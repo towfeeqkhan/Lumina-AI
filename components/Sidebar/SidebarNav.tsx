@@ -1,0 +1,38 @@
+"use client";
+
+const navItems = [
+  { icon: "add_comment", label: "New Chat", active: true },
+  { icon: "history", label: "History", active: false },
+];
+
+export default function SidebarNav() {
+  return (
+    <nav className="flex-1 overflow-y-auto sidebar-scroll mt-4">
+      <ul className="flex flex-col gap-1">
+        {navItems.map((item) => (
+          <li key={item.label}>
+            <a
+              href="#"
+              className={
+                item.active
+                  ? "flex items-center gap-3 px-4 py-3 mx-2 my-1 bg-primary-container text-on-primary-container rounded-lg font-[600] text-[14px] leading-[16px] tracking-[0.05em] transition-colors"
+                  : "flex items-center gap-3 px-4 py-3 mx-2 my-1 text-on-surface-variant hover:text-on-surface hover:bg-black/5 rounded-lg font-[600] text-[14px] leading-[16px] tracking-[0.05em] transition-colors group"
+              }
+            >
+              <span
+                className={`material-symbols-outlined text-[20px] ${
+                  !item.active
+                    ? "group-hover:text-secondary transition-colors"
+                    : ""
+                }`}
+              >
+                {item.icon}
+              </span>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
