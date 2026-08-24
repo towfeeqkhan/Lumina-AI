@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { ArrowUp, Mic, Plus } from "lucide-react";
 
 export default function ChatInput() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -18,7 +19,7 @@ export default function ChatInput() {
       <div className="bg-surface-container-highest/60 backdrop-blur-xl border border-black/5 rounded-[2rem] p-2 pr-3 flex items-end input-glow transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.05)]">
         {/* Left: Add Button */}
         <button className="p-3 text-on-surface-variant hover:text-primary hover:bg-black/5 rounded-full transition-colors shrink-0 mb-1 cursor-pointer">
-          <span className="material-symbols-outlined">add</span>
+          <Plus size={22} strokeWidth={2} />
         </button>
 
         {/* Textarea */}
@@ -44,17 +45,12 @@ export default function ChatInput() {
 
           {/* Mic Button */}
           <button className="p-2 text-on-surface-variant hover:text-secondary hover:bg-black/5 rounded-full transition-colors shrink-0 cursor-pointer">
-            <span className="material-symbols-outlined text-[20px]">mic</span>
+            <Mic size={20} strokeWidth={2} />
           </button>
 
           {/* Send Button */}
           <button className="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center hover:bg-primary-fixed-dim transition-colors shadow-inner shrink-0 ml-1 cursor-pointer">
-            <span
-              className="material-symbols-outlined"
-              style={{ fontVariationSettings: "'FILL' 1" }}
-            >
-              arrow_upward
-            </span>
+            <ArrowUp size={18} strokeWidth={2.5} />
           </button>
         </div>
       </div>

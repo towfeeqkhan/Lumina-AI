@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import MobileHeader from "@/components/Chat/MobileHeader";
+import Sidebar from "@/components/Sidebar/Sidebar";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -16,14 +18,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
-        />
-      </head>
       <body className="h-full overflow-hidden font-[var(--font-inter)]">
-        {children}
+        <div className="flex h-screen overflow-hidden bg-background text-on-surface">
+          <MobileHeader />
+          <Sidebar />
+          <div className="flex-1 flex flex-col md:ml-[280px] pt-16 md:pt-0">
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );

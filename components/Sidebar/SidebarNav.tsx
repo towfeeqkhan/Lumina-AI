@@ -1,8 +1,10 @@
 "use client";
 
+import { History, SquarePen } from "lucide-react";
+
 const navItems = [
-  { icon: "add_comment", label: "New Chat", active: true },
-  { icon: "history", label: "History", active: false },
+  { icon: SquarePen, label: "New Chat", active: true },
+  { icon: History, label: "History", active: false },
 ];
 
 export default function SidebarNav() {
@@ -19,15 +21,15 @@ export default function SidebarNav() {
                   : "flex items-center gap-3 px-4 py-3 mx-2 my-1 text-on-surface-variant hover:text-on-surface hover:bg-black/5 rounded-lg font-[600] text-[14px] leading-[16px] tracking-[0.05em] transition-colors group"
               }
             >
-              <span
-                className={`material-symbols-outlined text-[20px] ${
+              <item.icon
+                size={20}
+                strokeWidth={2}
+                className={
                   !item.active
                     ? "group-hover:text-secondary transition-colors"
                     : ""
-                }`}
-              >
-                {item.icon}
-              </span>
+                }
+              />
               {item.label}
             </a>
           </li>

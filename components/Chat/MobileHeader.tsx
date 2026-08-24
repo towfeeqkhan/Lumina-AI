@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Bell, CircleUserRound } from "lucide-react";
 
 export default function MobileHeader() {
   return (
@@ -16,12 +17,12 @@ export default function MobileHeader() {
         </span>
       </div>
       <div className="flex gap-4 text-primary">
-        <span className="material-symbols-outlined hover:bg-black/5 transition-colors p-2 rounded-full cursor-pointer active:scale-95 active:transition-transform">
-          notifications
-        </span>
-        <span className="material-symbols-outlined hover:bg-black/5 transition-colors p-2 rounded-full cursor-pointer active:scale-95 active:transition-transform">
-          account_circle
-        </span>
+        <button className="hover:bg-black/5 transition-colors p-2 rounded-full cursor-pointer active:scale-95 active:transition-transform">
+          <Bell size={22} strokeWidth={2} />
+        </button>
+        <button className="hover:bg-black/5 transition-colors p-2 rounded-full cursor-pointer active:scale-95 active:transition-transform">
+          <CircleUserRound size={22} strokeWidth={2} />
+        </button>
       </div>
     </header>
   );
