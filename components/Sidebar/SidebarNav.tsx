@@ -15,19 +15,15 @@ export default function SidebarNav() {
           <li key={item.label}>
             <a
               href="#"
-              className={
-                item.active
-                  ? "flex items-center gap-3 px-4 py-3 mx-2 my-1 bg-primary-container text-on-primary-container rounded-lg font-[600] text-[14px] leading-[16px] tracking-[0.05em] transition-colors"
-                  : "flex items-center gap-3 px-4 py-3 mx-2 my-1 text-on-surface-variant hover:text-on-surface hover:bg-black/5 rounded-lg font-[600] text-[14px] leading-[16px] tracking-[0.05em] transition-colors group"
-              }
+              className="group flex items-center gap-3 px-4 py-3 mx-2 my-1 rounded-lg text-on-surface-variant font-[600] text-[14px] leading-[16px] tracking-[0.05em] hover:bg-black/5 transition-colors"
             >
               <item.icon
                 size={20}
                 strokeWidth={2}
                 className={
-                  !item.active
-                    ? "group-hover:text-secondary transition-colors"
-                    : ""
+                  item.active
+                    ? "text-primary"
+                    : "group-hover:text-primary transition-colors"
                 }
               />
               {item.label}
