@@ -1,13 +1,35 @@
+"use client";
+
 import SidebarHeader from "@/components/Sidebar/SidebarHeader";
 import SidebarNav from "@/components/Sidebar/SidebarNav";
 import SidebarFooter from "@/components/Sidebar/SidebarFooter";
+import { PanelLeft } from "lucide-react";
 
-export default function Sidebar() {
+type SidebarProps = {
+  isOpen: boolean;
+  onToggle: () => void;
+};
+
+export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
+  if (!isOpen) {
+    return (
+      <button
+        onClick={onToggle}
+        aria-label="Open sidebar"
+        className="fixed top-4 left-6 z-50 h-10 w-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-black/5 transition-colors cursor-pointer"
+      >
+        <PanelLeft size={20} />
+      </button>
+    );
+  }
+
   return (
-    <aside className="hidden md:flex flex-col bg-surface-container backdrop-blur-md fixed left-0 top-0 h-full w-70 border-r border-black/5 shadow-xl py-[8px] transition-all duration-200 ease-in-out z-40">
-      <SidebarHeader />
-      <SidebarNav />
-      <SidebarFooter />
+    <aside className="fixed left-0 top-0 flex h-full w-[280px] z-40 bg-surface-container backdrop-blur-md border-r border-black/5 shadow-xl overflow-hidden">
+      <div className="flex flex-col h-full w-full py-[8px]">
+        <SidebarHeader onToggle={onToggle} />
+        <SidebarNav />
+        <SidebarFooter />
+      </div>
     </aside>
   );
 }
