@@ -48,6 +48,28 @@ export default function SidebarNav({ onNavigate }: SidebarNavProps) {
     return () => window.clearTimeout(fetchTimer);
   }, [isLoaded, isSignedIn, userId, fetchChats]);
 
+  useEffect(() => {
+    const handleChatCreated = (event: Event) => {
+      const { id, title } = (
+        event as CustomEvent<{ id: string; title: string }>
+      ).detail;
+      setChats((currentChats) => [
+        {
+          id,
+          userId: userId || "",
+          title,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        ...currentChats.filter((chat) => chat.id !== id),
+      ]);
+    };
+
+    window.addEventListener("lumina:chat-created", handleChatCreated);
+    return () =>
+      window.removeEventListener("lumina:chat-created", handleChatCreated);
+  }, [userId]);
+
   const isNewChatActive = pathname === "/";
 
   return (

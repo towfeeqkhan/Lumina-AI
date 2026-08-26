@@ -8,6 +8,13 @@
       "when": 1787586255105,
       "tag": "0000_sloppy_nocturne",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1787763991626,
+      "tag": "0001_ai_sdk_messages",
+      "breakpoints": true
     }
   ]
 }

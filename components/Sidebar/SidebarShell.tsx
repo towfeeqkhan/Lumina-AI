@@ -8,16 +8,14 @@ type SidebarShellProps = {
 };
 
 export default function SidebarShell({ children }: SidebarShellProps) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
-    if (typeof window === "undefined") {
-      return true;
-    }
-
-    return window.matchMedia("(min-width: 768px)").matches;
-  });
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
     const desktopMedia = window.matchMedia("(min-width: 768px)");
+
+    setIsSidebarOpen(desktopMedia.matches);
+    setHasMounted(true);
 
     const handleViewportChange = (event: MediaQueryListEvent) => {
       if (!event.matches) {
@@ -38,9 +36,15 @@ export default function SidebarShell({ children }: SidebarShellProps) {
     }
   };
 
+  const mainMarginClasses = hasMounted
+    ? isSidebarOpen
+      ? "md:ml-[280px]"
+      : "md:ml-0"
+    : "md:ml-[280px]";
+
   return (
     <div className="flex h-screen overflow-hidden bg-background text-on-surface">
-      {isSidebarOpen && (
+      {hasMounted && isSidebarOpen && (
         <button
           type="button"
           aria-label="Close sidebar"
@@ -50,13 +54,12 @@ export default function SidebarShell({ children }: SidebarShellProps) {
       )}
       <Sidebar
         isOpen={isSidebarOpen}
+        hasMounted={hasMounted}
         onToggle={() => setIsSidebarOpen((prev) => !prev)}
         onNavigate={closeSidebarOnMobile}
       />
       <div
-        className={`flex-1 flex flex-col transition-[margin] duration-300 ease-in-out ${
-          isSidebarOpen ? "md:ml-[280px]" : "md:ml-0"
-        }`}
+        className={`flex-1 flex flex-col min-w-0 transition-[margin] duration-300 ease-in-out ${mainMarginClasses}`}
       >
         {children}
       </div>
