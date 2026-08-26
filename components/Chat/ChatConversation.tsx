@@ -6,6 +6,7 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
 import { pendingMessageKey } from "@/components/Chat/NewChatComposer";
 import ChatInput from "@/components/Chat/ChatInput";
+import MarkdownMessage from "@/components/Chat/MarkdownMessage";
 
 type ChatConversationProps = {
   chatId: string;
@@ -116,13 +117,17 @@ export default function ChatConversation({
                   </div>
                 )}
                 <div
-                  className={`max-w-[85%] whitespace-pre-wrap wrap-break-word px-4 py-3 text-[14px] leading-6 shadow-[0_2px_8px_rgba(15,23,42,0.04)] md:max-w-[75%] ${
+                  className={`max-w-[85%] wrap-break-word px-4 py-3 text-[14px] leading-6 shadow-[0_2px_8px_rgba(15,23,42,0.04)] md:max-w-[75%] ${
                     isUserMessage
-                      ? "rounded-2xl rounded-br-md bg-surface-container-high text-on-surface"
+                      ? "rounded-2xl rounded-br-md bg-surface-container-high whitespace-pre-wrap text-on-surface"
                       : "rounded-2xl rounded-tl-md border-l-2 border-primary bg-surface-container-lowest text-on-surface"
                   }`}
                 >
-                  {messageText(message)}
+                  {isUserMessage ? (
+                    messageText(message)
+                  ) : (
+                    <MarkdownMessage content={messageText(message)} />
+                  )}
                 </div>
               </div>
             );
