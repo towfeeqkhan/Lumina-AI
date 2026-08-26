@@ -32,11 +32,26 @@ export default function SidebarShell({ children }: SidebarShellProps) {
     };
   }, []);
 
+  const closeSidebarOnMobile = () => {
+    if (!window.matchMedia("(min-width: 768px)").matches) {
+      setIsSidebarOpen(false);
+    }
+  };
+
   return (
     <div className="flex h-screen overflow-hidden bg-background text-on-surface">
+      {isSidebarOpen && (
+        <button
+          type="button"
+          aria-label="Close sidebar"
+          onClick={() => setIsSidebarOpen(false)}
+          className="fixed inset-0 z-30 bg-black/10 md:hidden"
+        />
+      )}
       <Sidebar
         isOpen={isSidebarOpen}
         onToggle={() => setIsSidebarOpen((prev) => !prev)}
+        onNavigate={closeSidebarOnMobile}
       />
       <div
         className={`flex-1 flex flex-col transition-[margin] duration-300 ease-in-out ${
