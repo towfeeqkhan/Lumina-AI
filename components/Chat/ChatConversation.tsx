@@ -35,6 +35,8 @@ export default function ChatConversation({
     id: chatId,
     messages: initialMessages,
     transport,
+
+    throttle: 50,
   });
 
   const scrollRef = useRef<HTMLDivElement>(null);

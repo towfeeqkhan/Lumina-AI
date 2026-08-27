@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -100,10 +101,16 @@ const markdownComponents: Components = {
   ),
 };
 
-export default function MarkdownMessage({ content }: { content: string }) {
+const MarkdownMessage = memo(function MarkdownMessage({
+  content,
+}: {
+  content: string;
+}) {
   return (
     <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
       {content}
     </ReactMarkdown>
   );
-}
+});
+
+export default MarkdownMessage;
