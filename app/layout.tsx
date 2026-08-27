@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SidebarShell from "@/components/Sidebar/SidebarShell";
@@ -15,10 +15,16 @@ export const metadata: Metadata = {
   description: "Lumina AI — Pro Intelligence.",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="h-full overflow-hidden font-[var(--font-inter)]">
+    <html lang="en" className={`${inter.variable} h-dvh antialiased`}>
+      <body className="h-dvh overflow-hidden font-[var(--font-inter)]">
         <ClerkProvider>
           <SidebarShell>{children}</SidebarShell>
         </ClerkProvider>

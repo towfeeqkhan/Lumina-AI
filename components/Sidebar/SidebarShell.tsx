@@ -43,7 +43,7 @@ export default function SidebarShell({ children }: SidebarShellProps) {
     : "md:ml-[280px]";
 
   return (
-    <div className="flex h-screen overflow-hidden bg-background text-on-surface">
+    <div className="flex h-dvh overflow-hidden bg-background text-on-surface">
       {hasMounted && isSidebarOpen && (
         <button
           type="button"

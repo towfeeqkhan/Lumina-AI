@@ -57,7 +57,7 @@ export default function ChatLoading() {
         </div>
       </div>
 
-      <div className="shrink-0 border-t border-black/5 bg-background/90 px-4 py-4 backdrop-blur-xl md:px-10 md:py-5">
+      <div className="shrink-0 border-t border-black/5 bg-background/90 px-4 py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] backdrop-blur-xl md:px-10 md:py-5">
         <div className="mx-auto w-full max-w-chat-max">
           <ChatInput disabled />
         </div>
